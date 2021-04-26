@@ -23,7 +23,7 @@ class Index extends \Magento\Framework\View\Element\Template
 
     /**
      * Get the end date of the sale
-     * @return float|int
+     * @return array
      */
 
     public function getSalesEnd()
@@ -39,12 +39,12 @@ class Index extends \Magento\Framework\View\Element\Template
             $product = $this->_registry->registry('current_product');
             if ($product->canBeShowInCategory($id)) {
                 if ($endSales <= 10) {
-                    return $time;
+                    return [true, $time];
                 } else {
-                    return "";
+                    return  [false];
                 }
             }
         }
-        return "";
+        return [false];
     }
 }
